@@ -1,0 +1,103 @@
+{
+  "kind": "collectionType",
+  "collectionName": "tours",
+  "info": {
+    "singularName": "tour",
+    "pluralName": "tours",
+    "displayName": "Tour",
+    "description": "Travel tour listing"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true,
+      "maxLength": 255
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title",
+      "required": true
+    },
+    "excerpt": {
+      "type": "text",
+      "maxLength": 500
+    },
+    "description": {
+      "type": "richtext"
+    },
+    "hero_image": {
+      "type": "media",
+      "allowedTypes": ["images"],
+      "multiple": false,
+      "required": false
+    },
+    "gallery": {
+      "type": "media",
+      "allowedTypes": ["images"],
+      "multiple": true,
+      "required": false
+    },
+    "duration_days": {
+      "type": "integer",
+      "required": true,
+      "min": 1
+    },
+    "price": {
+      "type": "decimal"
+    },
+    "currency": {
+      "type": "enumeration",
+      "enum": ["USD", "CNY"],
+      "default": "USD"
+    },
+    "start_city": {
+      "type": "string",
+      "maxLength": 100
+    },
+    "end_city": {
+      "type": "string",
+      "maxLength": 100
+    },
+    "availability": {
+      "type": "string",
+      "maxLength": 255,
+      "default": "Available year-round"
+    },
+    "specific_dates": {
+      "type": "text"
+    },
+    "is_new": {
+      "type": "boolean",
+      "default": false
+    },
+    "is_waitlist": {
+      "type": "boolean",
+      "default": false
+    },
+    "rating": {
+      "type": "decimal",
+      "min": 0,
+      "max": 5
+    },
+    "popularity": {
+      "type": "integer",
+      "default": 0
+    },
+    "category": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::category.category",
+      "inversedBy": "tours"
+    },
+    "type": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::type.type",
+      "inversedBy": "tours"
+    }
+  }
+}
